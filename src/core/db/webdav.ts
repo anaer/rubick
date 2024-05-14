@@ -30,7 +30,7 @@ export default class WebDav {
         !result &&
           new Notification({
             title: '导出失败',
-            body: 'webdav 连接失败',
+            body: 'WebDav连接失败',
           }).show();
       })
       .catch((r) => {
@@ -63,7 +63,7 @@ export default class WebDav {
     ws.pipe(
       this.client.createWriteStream(this.cloudPath, {}, () => {
         new Notification({
-          title: '已导出到坚果云',
+          title: '已导出到WebDav',
           body: `文件目录为：${this.cloudPath}`,
         }).show();
       })
@@ -76,7 +76,7 @@ export default class WebDav {
       if (!result) {
         return new Notification({
           title: '导入失败',
-          body: '请确认坚果云上已存在数据',
+          body: '请确认WebDav上已存在数据',
         }).show();
       }
       const str = await this.client.getFileContents(this.cloudPath, {
