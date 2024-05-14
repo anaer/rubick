@@ -115,9 +115,11 @@ const keydownEvent = (e, key: string) => {
     props.currentPlugin.name;
   switch (key) {
     case 'up':
+    case 'left':
       emit('changeCurrent', -1);
       break;
     case 'down':
+    case 'right':
       emit('changeCurrent', 1);
       break;
     case 'enter':
