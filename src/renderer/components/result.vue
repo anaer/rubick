@@ -211,6 +211,7 @@ initMainCmdMenus();
   background: var(--color-body-bg);
   .history-plugins {
     width: 100%;
+    height: 100%;
     border-top: 1px dashed var(--color-border-light);
     box-sizing: border-box;
     .history-item {
