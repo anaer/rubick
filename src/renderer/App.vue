@@ -106,21 +106,23 @@ watch(
 const changeIndex = (index) => {
   if (!options.value.length) {
     if (!pluginHistory.value.length) return;
-    if (
-      currentSelect.value + index > pluginHistory.value.length - 1 ||
-      currentSelect.value + index < 0
-    ) {
+    if (currentSelect.value + index > pluginHistory.value.length - 1) {
       currentSelect.value = 0;
+      return;
+    }
+    if (currentSelect.value + index < 0) {
+      currentSelect.value = pluginHistory.value.length - 1;
       return;
     }
     currentSelect.value = currentSelect.value + index;
     return;
   }
-  if (
-    currentSelect.value + index > options.value.length - 1 ||
-    currentSelect.value + index < 0
-  ) {
+  if (currentSelect.value + index > options.value.length - 1) {
     currentSelect.value = 0;
+    return;
+  }
+  if (currentSelect.value + index < 0) {
+    currentSelect.value = options.value.length - 1;
     return;
   }
   currentSelect.value = currentSelect.value + index;
