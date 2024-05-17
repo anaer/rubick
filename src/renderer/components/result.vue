@@ -72,18 +72,6 @@ const props: any = defineProps({
   clipboardFile: (() => [])(),
 });
 
-const itemHeight = 69;
-const rowItemNum = 8;
-const defaultHeight = 69;
-
-// TEST
-const history = ref(props.pluginHistory);
-watch([history], () => {
-  const row = Math.ceil(history.value.length / rowItemNum);
-  const height = row * itemHeight;
-  window.rubick.setExpendHeight(defaultHeight + height);
-});
-
 const emit = defineEmits(['choosePlugin', 'setPluginHistory']);
 
 const renderTitle = (title, match) => {

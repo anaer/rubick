@@ -134,7 +134,7 @@ const createPluginManager = (): any => {
       unpin.unshift(plugin);
     }
     // 超过数量 自动剔除
-    if (state.pluginHistory.length > 30) {
+    if (state.pluginHistory.length >= 24) {
       unpin.pop();
     }
     state.pluginHistory = [...pin, ...unpin];
