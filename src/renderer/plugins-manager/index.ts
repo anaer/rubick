@@ -133,7 +133,8 @@ const createPluginManager = (): any => {
       });
       unpin.unshift(plugin);
     }
-    if (state.pluginHistory.length > 8) {
+    // 超过数量 自动剔除
+    if (state.pluginHistory.length > 30) {
       unpin.pop();
     }
     state.pluginHistory = [...pin, ...unpin];

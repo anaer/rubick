@@ -73,12 +73,14 @@ const props: any = defineProps({
 });
 
 const itemHeight = 69;
-const itemMaxNum = 8;
+const rowItemNum = 8;
 const defaultHeight = 69;
 
+// TEST
 const history = ref(props.pluginHistory);
-watch([props.pluginHistory], () => {
-  const height = history.value.length > itemMaxNum ? itemMaxNum * itemHeight : itemHeight * history.value.length
+watch([history], () => {
+  const row = Math.ceil(history.value.length / rowItemNum);
+  const height = row * itemHeight;
   window.rubick.setExpendHeight(defaultHeight + height);
 });
 
