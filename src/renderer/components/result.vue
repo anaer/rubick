@@ -72,6 +72,16 @@ const props: any = defineProps({
   clipboardFile: (() => [])(),
 });
 
+const itemHeight = 69;
+const itemMaxNum = 8;
+const defaultHeight = 69;
+
+const history = ref(props.pluginHistory);
+watch([props.pluginHistory], () => {
+  const height = history.value.length > itemMaxNum ? itemMaxNum * itemHeight : itemHeight * history.value.length
+  window.rubick.setExpendHeight(defaultHeight + height);
+});
+
 const emit = defineEmits(['choosePlugin', 'setPluginHistory']);
 
 const renderTitle = (title, match) => {
@@ -211,7 +221,6 @@ initMainCmdMenus();
   background: var(--color-body-bg);
   .history-plugins {
     width: 100%;
-    height: 100%;
     border-top: 1px dashed var(--color-border-light);
     box-sizing: border-box;
     .history-item {
