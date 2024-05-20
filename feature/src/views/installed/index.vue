@@ -161,6 +161,10 @@ const superPanelPlugins = ref(
   }
 );
 
+const pluginHistory = ref(
+  window.rubick.db.get('rubick-local-start-app') || {}
+);
+
 const handleMenuClick = (key, item, cmd) => {
   if(key === 'open') {
     openPlugin({
@@ -200,6 +204,18 @@ const removePluginToSuperPanel = ({ cmd, name }) => {
   superPanelPlugins.value._rev = rev;
 };
 
+const removePluginHistory = ({ name }) => {
+  pluginHistory.value.data = toRaw(pluginHistory.value).data.filter(
+    (item) => item.name !== name
+  );
+
+  window.rubick.db.put({
+    _id: 'rubick-local-start-app',
+    _rev: pluginHistory.value._rev,
+    data: toRaw(pluginHistory.value),
+  });
+}
+
 const hasAdded = (cmd) => {
   let added = false;
   superPanelPlugins.value.data.some((item) => {
@@ -236,6 +252,7 @@ const deletePlugin = async (plugin) => {
   }, 20000);
   await window.market.deletePlugin(plugin);
   removePluginToSuperPanel({ name: plugin.name });
+  removePluginHistory({ name: plugin.name });
   updateLocalPlugin();
   clearTimeout(timer);
 };
