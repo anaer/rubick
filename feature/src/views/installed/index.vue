@@ -205,14 +205,14 @@ const removePluginToSuperPanel = ({ cmd, name }) => {
 };
 
 const removePluginHistory = ({ name }) => {
-  pluginHistory.value.data = toRaw(pluginHistory.value).data.filter(
-    (item) => item.name !== name
+  pluginHistory.value.data = pluginHistory.value.data.filter(
+    (item) => item.originName !== name
   );
 
   window.rubick.db.put({
     _id: 'rubick-local-start-app',
     _rev: pluginHistory.value._rev,
-    data: toRaw(pluginHistory.value),
+    data: JSON.parse(JSON.stringify(pluginHistory.value.data))
   });
 }
 
