@@ -106,7 +106,7 @@
       @finish="handleOk"
     >
       <a-form-item
-        label="webdav 提供商"
+        label="WebDav 提供商"
         name="suport"
       >
         <a-select v-model:value="formState.suport">
@@ -210,7 +210,7 @@ const importData = () => {
   }
   Modal.confirm({
     title: '导入确认',
-    content: '导入坚果云数据将会覆盖本地数据，是否确认导入？',
+    content: '导入WebDav数据将会覆盖本地数据，是否确认导入？',
     onOk() {
       window.market.dbImport(JSON.parse(JSON.stringify(formState)));
     },
